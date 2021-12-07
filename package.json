@@ -7,12 +7,21 @@
     "start": "next start"
   },
   "dependencies": {
+    "@react-three/cannon": "^4.2.0",
+    "@react-three/drei": "^7.25.4",
+    "@react-three/fiber": "^7.0.21",
     "@types/styled-components": "^5.1.9",
+    "@types/three": "^0.134.0",
+    "leva": "^0.9.16",
     "next": "^12.0.2",
+    "nice-color-palettes": "^3.0.0",
     "react": "^17.0.2",
     "react-dom": "^16.8.0",
     "react-is": "^16.8.0",
-    "styled-components": "^5.3.3"
+    "styled-components": "^5.3.3",
+    "three": "^0.135.0",
+    "tweakpane": "^3.0.6",
+    "use-tweaks": "^0.3.1"
   },
   "devDependencies": {
     "@types/react": "^17.0.4",

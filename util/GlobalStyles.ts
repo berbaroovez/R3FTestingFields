@@ -5,6 +5,11 @@ const GlobalStyles = createGlobalStyle`
   Josh's Custom CSS Reset
   https://www.joshwcomeau.com/css/custom-css-reset/
 */
+.section{
+  color: white;
+  z-index: 1;
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -13,6 +18,7 @@ const GlobalStyles = createGlobalStyle`
 }
 html, body, #__next {
   height: 100%;
+  background: black;
 }
 body {
   line-height: 1.5;
