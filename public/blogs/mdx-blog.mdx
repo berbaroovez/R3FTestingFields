@@ -1,0 +1,81 @@
+---
+slug: mdx-blog
+title: MDX Blog with Next
+by: carter olson
+---
+
+Yo fren! Im going to show ya'll how to make a mdx based nextjs blog just like
+this one. I'll guide you through it and talk about my troubles. Hope this helps
+you!! I'll be using hashnodes
+[next-mdx-remote](https://github.com/hashicorp/next-mdx-remote) for this build.
+
+<br />
+
+I'm hosting my mdx files in my project and not in a database. First thing you
+need to do is create a directory in your project for your mdx files, I called my
+blogs and put this
+[test mdx file](https://gist.githubusercontent.com/thapakazi/da3aede9dd57900c30e0c7a01b3e8329/raw/1a3378c27d2c15a5495f8adb6ddc1c2b0a7f4548/sample.md)
+in there. So we have something we can render when testing. Feel free to
+duplicate this file and change the title and slug for better testing. after
+doing that create a directory in the pages folder and name it blogs. Place a
+file into it called [slug].js/tsx depending on if your using typescript or
+javascript. The "slug" part of the file can be anything you want but you have to
+make sure you pass in the same word later on in getStaticPaths. I'll explain
+more down below. The [] is a catch all that will allow us to create a template
+file for each blog post.
+
+<br />
+
+### Gray Matter
+
+You might of notice at the top of the test file there is some extra data in it
+thats called Front-Matter (metadata). Gray matter is a package that allows you
+to read the Front-Matter from a markdown file. Adding metadata to a markdown
+file is down by putting a pair of "---" dashes at the top of your file think of
+it almost like a block comment. So you will put all you metadata in between the
+pairs in the following format. Key: Value for example: Slug: mdx-blog or Author:
+Carter. It is up to you to put the metadata you want in this section I just
+stuck with slug, author, and title for now.
+
+```
+---
+slug: mdx-blog
+title: MDX Blog With Next and Next-Remote-MDX
+by: carter
+---
+```
+
+### Get Static Paths
+
+Since we will be building our blog at build time we will need a way to grab all
+the paths to blog posts. We do this by getting all the files in the blog post
+directory and then filtering out the information to get our slug. Notice that in
+the params object we are returning we return only the slug. This is because we
+named the file [slug] so we must return the same name in the params object.
+
+<CodeBlock text={"mdx_blog"} langauge="jsx" />
+
+### Get Static Props
+
+In getting the static paths we get the context object from getStaticPaths but a
+caveat is that context only contains the slug. You cannot pass any other data
+directly in. This means we have to grab the file information again for each
+slug. This time its more direct. We do not have to use a for loop we just grab
+the file directly since on my website the slug is also the file name. If you do
+not want this and want to name your files differently from the slugs you will
+have to repeat something like above where you use a for loop and check if file
+to see which one matches the grey matter info. We get all the information and
+pass it as a prop into the component.
+
+<CodeBlock text={"mdx_blog_getStaticProps"} langauge="jsx" />
+
+### Get Static Props
+
+My main component is extremely simple. All I do is set the header to the title
+from the props and then pass the blog content into a next-mdx-remote component.
+This component takes the data from the mdx file and renders it to html. You can
+expand this component to add SEO related information to your blog posts or even
+a header image. The options are pretty much endless. That also means you can add
+as much info in your grey matter as you want.
+
+<CodeBlock text={"mdx_blog_BlogComponent"} langauge="jsx" />

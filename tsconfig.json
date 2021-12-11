@@ -23,7 +23,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "components/Car/Wheel.js", "components/Car/Vehicle.js", "components/Car/Body.js"  ],
   "exclude": [
     "node_modules"
   ]
